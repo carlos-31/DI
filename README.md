@@ -4,6 +4,7 @@
   <img src="https://img.shields.io/badge/status-in%20progress-green">
   <img src="https://img.shields.io/badge/java-orange">
 </p>
+![GitHub Org's stars](https://img.shields.io/github/stars/camilafernanda?style=social)
 
 
 
