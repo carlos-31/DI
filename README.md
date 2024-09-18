@@ -1,4 +1,4 @@
-![Apple_App_Store_10th_anniversary_07102018_big gif large_2x](https://github.com/user-attachments/assets/448a3fb7-2768-4d5c-8d77-b39007389711)# Repositorio Desarrollo de Interfaces
+# Repositorio Desarrollo de Interfaces
 <p align="center"> <img height=75 src="https://cpr.afundacion.org/inicio/wp-content/themes/Nexus/images/obc_header.png"></p>
 <p align="center"> 
   <img src="https://img.shields.io/badge/status-in%20progress-green">
@@ -36,7 +36,7 @@ Ya está listo!
 
 Hace cosas
 
-![Apple_App_Store_10th_anniversary_07102018_big gif large_2x](https://github.com/user-attachments/assets/af31eb80-5d1e-415f-9bb3-a8da9a2ed6d6)
+![giphy](https://github.com/user-attachments/assets/daa67d36-9eb9-499c-9740-f59e999d4364)
 
 
 ## Acceso al proyecto
