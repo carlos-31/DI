@@ -36,6 +36,9 @@ Ya está listo!
 
 Hace cosas
 
+![Uploading Apple_App_Store_10th_anniversary_07102018_big.gif.large_2x.gif…]()
+
+
 ## Acceso al proyecto
 
 Haciendo click
