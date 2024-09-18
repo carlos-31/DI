@@ -26,19 +26,31 @@
 
 ## Descripción del proyecto
 
-blablablablabla
+Esto es un proyecto :)
 
 ## Estado del proyecto
 
+Ya está listo!
+
 ## Características de la aplicación y demostración
+
+Hace cosas
 
 ## Acceso al proyecto
 
+Haciendo click
+
 ## Tecnologías utilizadas
+
+Muchas
 
 ## Personas Contribuyentes
 
+yo!
+
 ## Personas-Desarrolladores del Proyecto
+
+yo!
 
 ## Licencia
 
