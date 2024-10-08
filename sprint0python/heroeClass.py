@@ -35,3 +35,11 @@ class Heroe:
         if self.salud > 0:
             return True
 
+    def incrementar_ataque(self,num):
+        self.ataque += num
+
+    def cura(self,hp):
+        self.salud += hp
+        if self.salud > self.salud_maxima:
+            self.salud = self.salud_maxima
+

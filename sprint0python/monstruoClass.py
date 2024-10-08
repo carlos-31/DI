@@ -8,6 +8,7 @@ class Monstruo:
         self.defensa = random.randint(0,15)
         self.salud = 100
 
+
     def atacar(self,heroe):
         print(f"El monstruo {self.nombre} ataca a {heroe.nombre}")
         dmg = self.ataque - heroe.defensa
@@ -19,4 +20,3 @@ class Monstruo:
     def esta_vivo(self):
         if self.salud > 0:
             return True
-
