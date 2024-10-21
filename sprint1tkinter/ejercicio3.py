@@ -5,7 +5,7 @@ root.title("Ejercicio 3")
 root.geometry("300x400")
 
 def saludo():
-    nombre = entrada.get()
+    nombre = entrada.get()  #Con .get() se puede obtener lo que tiene el Entry escrito.
     etiqueta_saludo.config(text=f"Buenos días {nombre}!")
 
 etiqueta_titulo = tk.Label(root, text="Escriba su nombre:")
@@ -18,6 +18,7 @@ boton = tk.Button(root, command=saludo, text="Buenos días!", bg="orange", fg="b
 boton.pack(pady=30)
 
 etiqueta_saludo = tk.Label(root, text="")
+#La etiqueta se coloca primero vacía, y luego al llamar a saludo() se modifica.
 etiqueta_saludo.pack(pady=15)
 
 

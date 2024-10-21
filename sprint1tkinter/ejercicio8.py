@@ -1,18 +1,21 @@
 import tkinter as tk
 
 root =  tk.Tk()
-root.title("Ejercicio 7")
+root.title("Ejercicio 8")
 root.geometry("330x220")
 
 
 def mostrar_entrada():
+    #Agarra el contenido del entry en el frame superior, y lo imprime en la etiqueta del frame inferior.
     contenido = entrada.get()
     etiqueta_entrada.config(text=contenido)
 
 def borrar_entrada():
+    #vacía el contenido del entry.
     entrada.delete(0,tk.END)
 
 
+#Dos frames para devidir la pantalla
 frame_1 = tk.Frame(root, bg="lightsalmon", bd=2, width=400, height=200)
 frame_1.grid(row=0, column=0, padx=10, pady=10, sticky='ew')
 
@@ -20,7 +23,7 @@ frame_2 = tk.Frame(root, bg="pink", bd=2, width=400, height=200)
 frame_2.grid(row=1, column=0, padx=10, pady=10)
 
 
-
+#Contenido del frame superior
 etiqueta_1 = tk.Label(frame_1, bg="lightsalmon", text="Esto abajo es un \"Entry\"")
 etiqueta_1.grid(row=0, column=0, padx=10, pady=10)
 
@@ -31,7 +34,7 @@ entrada = tk.Entry(frame_1, width=30)
 entrada.grid(row=1, column=0, columnspan=2, padx=10, pady=10)
 
 
-
+#Contenido del frame inferior
 boton_mostrar = tk.Button(frame_2, bg="#f9c5e9", text="Mostrar Contenido", command=mostrar_entrada)
 boton_mostrar.grid(row=0, column=0, padx=10, pady=10)
 
