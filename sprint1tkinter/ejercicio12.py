@@ -9,18 +9,21 @@ root.geometry("350x450")
 
 
 def add_user():
+   #Se guardan en variables los contenidos del entry dle nombre, scale de la edad y del radiobutton del genero
    name = name_entry.get()
    age = age_scale.get()
    gender = gender_var.get()
 
-
+   #Se usan estas variables para guardar en la listbox una cadena con los datos.
    user_info = f"{name}, Edad: {age}, Género: {gender}"
    user_listbox.insert(tk.END, user_info)
-   name_entry.delete(0, tk.END)
+   name_entry.delete(0, tk.END)  #Se vacía el entry del nombre
 
 
 def delete_user():
-   selected_user = user_listbox.curselection()[0]
+   #Se lee lo seleccionado, guardandolo en una variable, y luego borrar del listbox usanod la variable para
+      #indicar lo que se debe borrar
+   selected_user = user_listbox.curselection()
    user_listbox.delete(selected_user)
 
 
@@ -35,7 +38,7 @@ def load_list():
 
 
 
-
+# Campos de entrada de los datos de la persona
 tk.Label(root, text="Nombre: ").grid(row=0, column=0)
 name_entry = tk.Entry(root)
 name_entry.grid(row=0, column=1)
@@ -53,12 +56,12 @@ tk.Radiobutton(root, text="Femenino", variable=gender_var, value="Femenino").gri
 tk.Radiobutton(root, text="Otro", variable=gender_var, value="Otro").grid(row=2, column=3)
 
 
-# Botón para añadir usuario
+#Botón para añadir usuario
 add_button = tk.Button(root, text="Añadir Usuario", command=add_user)
 add_button.grid(pady=15, row=3, columnspan=4)
 
 
-# Lista de usuarios
+#Lista de usuarios
 user_listbox = tk.Listbox(root, width=50)
 user_listbox.grid(row=4, columnspan=4)
 
