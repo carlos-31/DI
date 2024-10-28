@@ -22,6 +22,3 @@ class NotasModel:
             lineas = archivo.readlines()
         for linea in lineas:
             self.notas.append(linea.strip())
-
-
-

@@ -1,7 +1,5 @@
 import tkinter as tk
 
-from PIL import Image, ImageTk
-
 
 class VistaNotas:
     def __init__(self, root):
@@ -36,21 +34,5 @@ class VistaNotas:
         self.boton_descargar = tk.Button(root, text="Descargar imagen")
         self.boton_descargar.pack(pady=15)
 
-        self.imagen = Image.open('C:\\Users\\carlo_xldsprr\\Desktop\\DAM2\\cosas\\python\\mvc\\lightweaver.jpg')
-        self.imagen_redimensionada = self.imagen.resize((200, 200), Image.Resampling.LANCZOS)
-        self.imagen_tk = ImageTk.PhotoImage(self.imagen_redimensionada)
-        self.etiqueta_img = tk.Label(root, image=self.imagen_tk)
+        self.etiqueta_img = tk.Label(root)
         self.etiqueta_img.pack(pady=15)
-
-
-
-
-
-
-#cosa = tk.Tk()#
-#vista = VistaNotas(cosa)
-#cosa.mainloop()
-
-'''self.listbox.delete(0, tk.END)
-        for nota in notas:
-            self.listbox.insert(tk.END, nota)'''
