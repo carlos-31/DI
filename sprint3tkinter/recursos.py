@@ -3,6 +3,8 @@ from PIL import Image, ImageTk
 from io import BytesIO
 
 
+
+
 def descargar_imagen(url, size):
     try:
 
@@ -10,7 +12,7 @@ def descargar_imagen(url, size):
         response.raise_for_status()
         image = Image.open(BytesIO(response.content))
         image = image.resize(size, Image.LANCZOS)
-
+        print ("descargado "+url)
         return ImageTk.PhotoImage(image)
 
 
