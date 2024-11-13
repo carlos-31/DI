@@ -69,6 +69,8 @@ class GameView:
         self.labels = {}
         self.board_frame = None
         self.labels_frame = None
+        self.label_time = None
+        self.label_movements_num = None
         self.on_card_click_callback = on_card_click_callback
         self.update_move_count_callback = update_move_count_callback
         self.update_time_callback = update_time_callback
@@ -91,20 +93,63 @@ class GameView:
                 label = tk.Label(self.board_frame, image=model.hidden_image)
                 label.grid(row=i, column = j)
 
-        self.labels_frame = tk.Frame(self.window)
+                label.bind("<Button-1>", lambda event, r=i, c=j: self.on_card_click_callback((r, c)))
+
+
+                self.labels_frame = tk.Frame(self.window)
         self.labels_frame.pack(pady=10, padx=15)
 
         label_movements = tk.Label(self.labels_frame, text="Movimientos: ")
         label_movements.grid(row=0, column=0)
 
-        label_movements_num = tk.Label(self.labels_frame, text="")
-        label_movements_num.grid(row=0, column=1)
+        self.label_movements_num = tk.Label(self.labels_frame, text="0")
+        self.label_movements_num.grid(row=0, column=1)
 
         label_timer = tk.Label(self.labels_frame, text="Tiempo: ")
         label_timer.grid(row=0, column=2)
 
-        label_time = tk.Label(self.labels_frame, text="")
-        label_time.grid(row=0, column=3)
+        self.label_time = tk.Label(self.labels_frame, text="0 segundos")
+        self.label_time.grid(row=0, column=3)
+
+        label_carta = tk.Label(self.labels_frame, text="")
+        label_carta.grid(row=1,column=0)
+
+
+    def update_time(self, time):
+        self.label_time.config(text=str(time)+" segundos")
+
+    def update_moves(self, moves):
+        self.label_movements_num.config(text=moves)
+
+
+    def update_board(self, pos, image_id, model):
+        i, j = pos
+
+        for widget in self.board_frame.grid_slaves():
+            #gets a list of all the labels in the board with their coords
+            grid_info = widget.grid_info()
+            row, col = int(grid_info['row']), int(grid_info['column'])
+                #saving the coords to then compare them to the one you're looking for
+
+
+            if row == i and col == j:
+                widget.config(image=model.images[image_id])
+                break #breaks after finding the correct label
+
+
+    def reset_cards(self, pos1, pos2, model):
+        i, j = pos1
+        x, y = pos2
+
+        for widget in self.board_frame.grid_slaves():
+            grid_info = widget.grid_info()
+            row, col = int(grid_info['row']), int(grid_info['column'])
+
+            #changes the img only to the ones that are turned
+            if row == i and col == j or row == x and col == y:
+                widget.config(image=model.hidden_image)
+
+
 
 
 

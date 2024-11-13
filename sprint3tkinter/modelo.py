@@ -86,6 +86,7 @@ class GameModel:
                 index += 1
 
 
+
     def _load_images(self):
 
         def load_images_thread():
@@ -113,6 +114,12 @@ class GameModel:
 
     def images_are_loaded(self):
         return self.images_loaded
+
+    def get_time(self):
+        return time.time()
+
+    def start_timer(self):
+        self.start_time = time.time()
 
 
 
