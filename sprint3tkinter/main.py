@@ -5,6 +5,7 @@ from modelo import GameModel
 
 if __name__ == "__main__":
     root = tk.Tk()
-    controlador = GameController(root)
+    model = GameModel("facil","no")
+    controlador = GameController(root, model)
 
     root.mainloop()

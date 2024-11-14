@@ -21,43 +21,75 @@ class MainMenu:
         player_name = simpledialog.askstring("Nombre del Jugador: ", "Introduce tu nombre...")
         return player_name
 
-    def show_stats(self):
+    def show_stats(self, ranking):
         stats_window = tk.Toplevel(self.root)
         stats_window.title("Estadísticas")
+        stats_window.geometry("600x800")
 
         stats_window.grid_columnconfigure(0, weight=1)
-        stats_window.grid_columnconfigure(1, weight=1)
-        stats_window.grid_columnconfigure(2, weight=1)
 
-        header = tk.Label(stats_window, text="Estadísticas según dificultad:")
+        header = tk.Label(stats_window, text="Estadísticas según dificultad: \n\nNombre\t|\tNúmero de movimientos\t|\tFecha")
         header.grid(row=0, column=0, columnspan=3, pady=20, sticky="ew")
 
 
-        frame_easy = tk.Frame(stats_window)
-        frame_easy.grid(row = 1, column = 0, padx=10)
+        frame_easy = tk.Frame(stats_window, bd=2, relief="solid", bg="lightblue")
+        frame_easy.grid(row = 1, column = 0, padx=10, pady=10, sticky="ew")
 
         label_easy = tk.Label(frame_easy, text="Fácil:")
-        label_easy.grid(row=0,column=0, pady=5)
+        label_easy.grid(row=0,column=0, pady=5, sticky="ew")
+
+        if "facil" in ranking and ranking["facil"]:
+            self.fill_frame(frame_easy, ranking["facil"])
+        else:
+            name_label = tk.Label(frame_easy, text="No hay historial en esta dificultad", width=20)
+            name_label.grid(row=1, column=0, columnspan=3, pady=2, sticky="ew")
 
 
-            #todo add top 10 of each dif lvl, name and num of movements
 
 
-        frame_normal = tk.Frame(stats_window)
-        frame_normal.grid(row=1, column=1, padx=10)
+        frame_normal = tk.Frame(stats_window, bd=2, relief="solid", bg="red")
+        frame_normal.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
         label_normal = tk.Label(frame_normal, text="Normal:")
-        label_normal.grid(row=0, column=0, pady=5)
+        label_normal.grid(row=0, column=0, pady=5, sticky="ew")
+
+        if "normal" in ranking and ranking["normal"]:
+            self.fill_frame(frame_normal, ranking["normal"])
+        else:
+            name_label = tk.Label(frame_normal, text="No hay historial en esta dificultad", width=20)
+            name_label.grid(row=1, column=0, columnspan=3, pady=2, sticky="ew")
 
 
 
 
-
-        frame_hard = tk.Frame(stats_window)
-        frame_hard.grid(row=1, column=2, padx=10)
+        frame_hard = tk.Frame(stats_window, bd=2, relief="solid", bg="green")
+        frame_hard.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
 
         label_hard = tk.Label(frame_hard, text="Difícil:")
-        label_hard.grid(row=0, column=0, pady=5)
+        label_hard.grid(row=0, column=0, pady=5, sticky="ew")
+
+        if "dificil" in ranking and ranking["dificil"]:
+            self.fill_frame(frame_hard, ranking["dificil"])
+        else:
+            name_label = tk.Label(frame_hard, text="No hay historial en esta dificultad", width=20)
+            name_label.grid(row=1, column=0, columnspan=2, pady=2, sticky="ew")
+
+
+
+    def fill_frame(self, frame, data):
+
+        for i, (name, moves, date) in enumerate(data):
+            number_label = tk.Label(frame, text=i+1, width=20)
+            number_label.grid(row=i + 1, column=0, pady=2, sticky="w")
+            # Create labels for each column (name, moves, date)
+            name_label = tk.Label(frame, text=name, width=20)
+            name_label.grid(row=i + 1, column=1, pady=2, sticky="w")
+
+            moves_label = tk.Label(frame, text=moves, width=5)
+            moves_label.grid(row=i + 1, column=2, pady=2, sticky="e")
+
+            date_label = tk.Label(frame, text=date, width=20)
+            date_label.grid(row=i + 1, column=3, pady=2, sticky="w")
 
 
 
@@ -74,6 +106,7 @@ class GameView:
         self.on_card_click_callback = on_card_click_callback
         self.update_move_count_callback = update_move_count_callback
         self.update_time_callback = update_time_callback
+        self.finish_window = None
 
 
     def create_board(self, model):
@@ -149,6 +182,16 @@ class GameView:
             if row == i and col == j or row == x and col == y:
                 widget.config(image=model.hidden_image)
 
+
+    def match_finished(self,moves, name):
+        self.finish_window = tk.Toplevel(self.root)
+        self.finish_window.title("Enhorabuena!")
+        (tk.Label(self.finish_window,text="Felicidades " + name + "! Has terminado el juego con "
+                                 + str(moves) + " movimientos.")).pack(pady=15, padx=15)
+
+
+    def destroy(self):
+        self.window.destroy()
 
 
 

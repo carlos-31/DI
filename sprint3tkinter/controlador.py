@@ -8,9 +8,9 @@ from vista import MainMenu, GameView
 
 
 class GameController:
-    def __init__(self, root):
+    def __init__(self, root, model):
         self.root = root
-        self.model = None
+        self.model = model
         self.selected = []
         self.timer_started = False
         self.name = None
@@ -29,7 +29,7 @@ class GameController:
 
     def show_difficulty_selection(self):
         difficulty = ""
-        valid = ["fácil", "normal", "difícil"]
+        valid = ["fácil", "normal", "difícil", "facil", "dificil"]
         while difficulty not in valid:
             difficulty = simpledialog.askstring("Escriba la dificultad que quiera jugar: ",
                                                 "fácil, normal o difícil")
@@ -38,11 +38,14 @@ class GameController:
         self.difficulty = difficulty
         self.name = self.main_menu.ask_player_name()
 
-        self.start_game()
+        if self.difficulty and self.name and self.name != "no":
+            self.start_game()
 
 
     def show_stats(self):
-        print("stats")
+        stats = self.model.load_scores()
+        print(stats)
+        self.main_menu.show_stats(stats)
 
     def exit_game(self):
         self.root.quit()
@@ -85,17 +88,17 @@ class GameController:
             self.model.start_timer()
             self.update_time()
 
+        if pos not in self.selected:
+            img_name = self.model.board[pos[0]][pos[1]]
+            self.GameView.update_board(pos,img_name, self.model)
+                #shows the image on the label clicked
 
-        img_name = self.model.board[pos[0]][pos[1]]
-        self.GameView.update_board(pos,img_name, self.model)
-            #shows the image on the label clicked
+            self.selected.append(pos)
+                #saves the coords to the img clicked in selected
 
-        self.selected.append(pos)
-            #saves the coords to the img clicked in selected
-
-        if self.selected.__len__() == 2:
-                #if there's two cards selected it calls the func to handle the comparison
-            self.root.after(300, self.handle_card_selection)
+            if self.selected.__len__() == 2:
+                    #if there's two cards selected it calls the func to handle the comparison
+                self.root.after(300, self.handle_card_selection)
 
 
     def handle_card_selection(self):
@@ -104,8 +107,14 @@ class GameController:
         pos_1 = self.selected[0]
         pos_2 = self.selected[1]
 
+        self.model.moves += 1
+        self.GameView.update_moves(self.model.moves)
+
+
         if self.model.board[pos_1[0]][pos_1[1]] == self.model.board[pos_2[0]][pos_2[1]]:
+            self.model.pairs_found += 1
             print("YAY")
+            self.check_game_complete()
         else:
             self.root.after(1000, self.GameView.reset_cards(pos_1,pos_2,self.model))
                 #need to wait before calling it so the 2nd card actually shows up
@@ -113,20 +122,30 @@ class GameController:
         self.selected = []
             #reset selected
 
-        self.model.moves += 1
-        self.GameView.update_moves(self.model.moves)
-
 
 
     def update_move_count(self, moves):
         pass
 
     def update_time(self):
-        current_time = self.model.get_time() - self.model.start_time
+        if self.timer_started:
+            current_time = self.model.get_time() - self.model.start_time
 
-        self.GameView.update_time(int(current_time)) #used int so only the second shows
+            self.GameView.update_time(int(current_time)) #used int so only the second shows
 
-        self.root.after(1000, self.update_time)
-            #keeps calling this every second so it keeps updating on the screen
+            self.root.after(1000, self.update_time)
+                #keeps calling this every second so it keeps updating on the screen
+
+    def check_game_complete(self):
+        if self.model.is_game_complete():
+            self.GameView.match_finished(self.model.moves, self.name)
+            self.model.save_score()
+            self.return_to_main_menu()
+
+    def return_to_main_menu(self):
+        GameModel("facil","no")
+        self.timer_started = False
+        self.timer_started = False
+        self.GameView.destroy()
 
 

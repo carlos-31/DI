@@ -7,7 +7,7 @@ from recursos import descargar_imagen
 
 class GameModel:
     def __init__(self, difficulty, player_name, cell_size=(75,100)):
-        if difficulty == "fácil":
+        if difficulty == "fácil" or difficulty == "facil":
              self.difficulty = 4
         elif difficulty == "normal":
             self.difficulty = 6
@@ -23,6 +23,8 @@ class GameModel:
         self.cards = None
         self.hidden_image = None
         self.images = {}
+        self.pairs = 0
+        self.pairs_found = 0
         self.img_names = [
             "prayerCrown.jpg",
             "galaxyGroundWithin.jpg",
@@ -58,9 +60,9 @@ class GameModel:
             "drowningDeep.jpg"
         ]
 
-
-        self._generate_board()
-        self._load_images()
+        if self.name != "no":
+            self._generate_board()
+            self._load_images()
 
 
 
@@ -68,6 +70,9 @@ class GameModel:
     def _generate_board(self):
         num_cards = int((self.difficulty * self.difficulty) // 2)
             #number of unique imgs you need according to the difficulty
+
+        self.pairs = num_cards
+
         self.cards = self.img_names[:num_cards] * 2
             #[:x] takes the first x items (slices) (same as [0:x], take from 0 to x from list)
         random.shuffle(self.cards)
@@ -120,6 +125,57 @@ class GameModel:
 
     def start_timer(self):
         self.start_time = time.time()
+
+
+    def is_game_complete(self):
+        if self.pairs_found == self.pairs:
+            return True
+        else:
+            return False
+
+
+    def save_score(self):
+        rankings = self.load_scores()
+        date = datetime.datetime.now().strftime("%Y-%m-%d~%H:%M")
+
+        difficulty = "facil"
+        if self.difficulty == 6:
+            difficulty = "normal"
+        if self.difficulty == 8:
+            difficulty = "dificil"
+
+        rankings[difficulty].append((self.name, self.moves, date))
+
+        for difficulty in rankings:
+            rankings[difficulty].sort(key=lambda x: x[1])
+
+            if len(rankings[difficulty]) > 3:
+                rankings[difficulty] = rankings[difficulty][:3]
+
+        with open("rankings.txt", "w") as archivo:
+            for difficulty in ["facil", "normal", "dificil"]:
+                for self.name, self.moves, date in rankings[difficulty]:
+                    archivo.write(f"{difficulty} {self.name} {self.moves} {date}\n")
+
+
+
+    def load_scores(self):
+        rankings = {"facil": [], "normal": [], "dificil": []}
+        with open("rankings.txt","r") as file:
+            for line in file:
+                print(line)
+                difficulty, name, moves, date = line.strip().split()
+                rankings[difficulty].append((name, int(moves), date))
+
+        return rankings
+
+
+
+
+
+
+
+
 
 
 
