@@ -28,9 +28,10 @@ public class CatalogActivity extends AppCompatActivity {
         });
 
 
-
+        // botón para ír a la otra actividad
         Button button = findViewById(R.id.buttonCatalog);
         button.setOnClickListener(new View.OnClickListener() {
+            // listener para función del click al botón
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(context, DetailActivity.class);
