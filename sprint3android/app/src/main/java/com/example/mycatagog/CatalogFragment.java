@@ -1,5 +1,6 @@
 package com.example.mycatagog;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavOptions;
@@ -60,7 +61,12 @@ public class CatalogFragment extends Fragment {
                                     .build());
         });
 
-
+//        button.setOnClickListener(v -> {
+//            Intent intent = new Intent(requireContext(), DetailActivity.class);
+//                //se usa requireContext() al ser un fragment y no una activity
+//            startActivity(intent);
+//            requireActivity().finish();
+//        });      este no me sirve que detail lo cambie a un fragment y no es una actividad
 
         return view;
     }
