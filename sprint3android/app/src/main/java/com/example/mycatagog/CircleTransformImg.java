@@ -65,6 +65,6 @@ public class CircleTransformImg implements Transformation {
     // devuelve una clave única para esta transformación para que Picasso sepa cuándo usarla
     @Override
     public String key() {
-        return "circle";  // nombre de la transformación
+        return "circle";
     }
 }
