@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "269016667395",
+    "firebase_url": "https://bookcore-715e5-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "bookcore-715e5",
+    "storage_bucket": "bookcore-715e5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269016667395:android:df6e3c9494ce103cc80536",
+        "android_client_info": {
+          "package_name": "com.example.bookcore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB7leuSQvFW__hQh_BFHDOHGgS8WYk0Oc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
