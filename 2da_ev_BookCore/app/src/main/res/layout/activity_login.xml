@@ -5,7 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="#DBE9EE"
+    >
+
+    <!--
+    #DBE9EE
+    #C0D6DF
+    #4F6D7A
+    #4A6FA5
+    #166088
+    -->
 
 
     <TextView
@@ -30,7 +40,7 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintTop_toBottomOf="@id/textView2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,11 +69,12 @@
         android:layout_height="wrap_content"
         android:text="Log In"
         android:minHeight="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintTop_toBottomOf="@id/editTextPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
+        app:layout_constraintHorizontal_bias="0.5"
+        style="@style/button"/>
 
 
     <TextView
@@ -72,11 +83,13 @@
         android:layout_height="wrap_content"
         android:text="Don't have an account yet?\n Sign up here!"
         android:gravity="center"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="#4A6FA5"
+        android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/buttonLogIn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:clickable="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

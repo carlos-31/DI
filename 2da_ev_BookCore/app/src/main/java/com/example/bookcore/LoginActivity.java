@@ -1,6 +1,13 @@
 package com.example.bookcore;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +15,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+
+
 public class LoginActivity extends AppCompatActivity {
+    Context context = this;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -23,6 +36,43 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+        mAuth = FirebaseAuth.getInstance();
+
+
+        Button loginButton = findViewById(R.id.buttonLogIn);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "no hago nada yet", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        TextView myTextView = findViewById(R.id.textViewRegister);
+        myTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent registerIntent = new Intent(context, RegisterActivity.class);
+                startActivity(registerIntent);
+            }
+        });
+
 
     }
+
+    private void loginUser() {
+        String email = ((EditText) findViewById(R.id.editTextEmail)).getText().toString();
+        String password = ((EditText) findViewById(R.id.editTextPassword)).getText().toString();
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(context, "Inicio de sesión exitoso.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Error en autenticación.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+
+
 }
