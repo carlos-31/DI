@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "no hago nada yet", Toast.LENGTH_SHORT).show();
+                loginUser();
             }
         });
 
@@ -63,14 +63,18 @@ public class LoginActivity extends AppCompatActivity {
         String email = ((EditText) findViewById(R.id.editTextEmail)).getText().toString();
         String password = ((EditText) findViewById(R.id.editTextPassword)).getText().toString();
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(context, "Inicio de sesión exitoso.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(context, "Error en autenticación.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        if (!email.isEmpty() && !password.isEmpty())
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            Intent dashboardIntent = new Intent(context,DashboardActivity.class);
+                            startActivity(dashboardIntent);
+                        } else {
+                            Toast.makeText(context, "Error en autenticación.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        else
+            Toast.makeText(context, "Debe escribir sus datos", Toast.LENGTH_SHORT).show();
     }
 
 
