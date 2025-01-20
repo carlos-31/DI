@@ -32,9 +32,11 @@ public class DashboardActivity extends AppCompatActivity {
     private String coverUrl;
     private String title;
     private String author;
+    private String synopsis;
     private ImageView coverImg;
     private TextView titleView;
     private TextView authorView;
+    private TextView synopsisView;
 
 
     @Override
@@ -51,6 +53,7 @@ public class DashboardActivity extends AppCompatActivity {
         coverImg = (ImageView) findViewById(R.id.coverImageView);
         titleView = (TextView) findViewById(R.id.titleTextView);
         authorView = (TextView) findViewById(R.id.authorTextView);
+        synopsisView = (TextView) findViewById(R.id.synopsisTextView);
 
         fetchData();
 
@@ -79,6 +82,7 @@ public class DashboardActivity extends AppCompatActivity {
                 title = dataSnapshot.child("title").getValue(String.class);
                 author = dataSnapshot.child("author").getValue(String.class);
                 coverUrl = dataSnapshot.child("cover_url").getValue(String.class);
+                synopsis = dataSnapshot.child("synopsis").getValue(String.class);
 
                 Log.d("Firebase", "Fetched: " + title);
 
@@ -90,6 +94,7 @@ public class DashboardActivity extends AppCompatActivity {
 
                 titleView.setText(title);
                 authorView.setText(author);
+                synopsisView.setText(synopsis);
             }
 
             @Override

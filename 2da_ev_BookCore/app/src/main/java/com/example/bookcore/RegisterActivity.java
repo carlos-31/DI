@@ -74,24 +74,26 @@ public class RegisterActivity extends AppCompatActivity {
         String addressString = address.getText().toString();
 
         if (nameString.isEmpty()){
-            Toast.makeText(context, "Error: Falta escribir su nombre", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Error: Name is missing", Toast.LENGTH_LONG).show();
             name.setText("");
             name.requestFocus();
             return;
         }
 
+        //Patterns.EMAIL_ADDRESS
+
         if (!emailString.contains("@")){
             if (emailString.isEmpty())
-                Toast.makeText(context, "Error: Falta escribir su email", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Error: Email is missing", Toast.LENGTH_LONG).show();
             else
-                Toast.makeText(context, "Error: Formato incorrecto de email", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Error: Email not valid", Toast.LENGTH_LONG).show();
             email.setText("");
             email.requestFocus();
             return;
         }
 
         if (!passwordString.equals(password2String) || passwordString.isEmpty()){
-            Toast.makeText(context, "Error: passwords dont match", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Error: Password don't match", Toast.LENGTH_LONG).show();
             password.setText("");
             password2.setText("");
             password.requestFocus();
@@ -99,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (phoneString.length() !=9){
-            Toast.makeText(context, "Error: Falta escribir su número", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Error: Phone number is missing", Toast.LENGTH_LONG).show();
             phone.setText("");
             phone.requestFocus();
             return;
@@ -107,7 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
             try {
                 Integer.parseInt(phoneString);
             } catch (NumberFormatException e) {
-                Toast.makeText(context, "Error: Formato incorrecto en el número", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Error: Phone number not valid", Toast.LENGTH_LONG).show();
                 phone.setText("");
                 phone.requestFocus();
                 return;
@@ -115,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (addressString.isEmpty()){
-            Toast.makeText(context, "Error: Falta escribir su dirección", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Error: Address is missing", Toast.LENGTH_LONG).show();
             address.setText("");
             address.requestFocus();
             return;
@@ -136,14 +138,14 @@ public class RegisterActivity extends AppCompatActivity {
                                 .setValue(userMap)
                                 .addOnCompleteListener(databaseTask -> {
                                     if (databaseTask.isSuccessful()) {
-                                        Toast.makeText(context, "Usuario registrado y datos guardados correctamente.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, "User registered and data saved succesfully.", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(context, "Usuario registrado, pero error al guardar datos: " + databaseTask.getException(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, "User registered, error when saving data: " + databaseTask.getException(), Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
                     } else {
-                        Toast.makeText(context, "Error en el registro: " + task.getException(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Error while registering: " + task.getException(), Toast.LENGTH_SHORT).show();
                         return;
                     }
                 });

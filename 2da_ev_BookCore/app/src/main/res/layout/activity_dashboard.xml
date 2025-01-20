@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DashboardActivity"
-    android:background="#DBE9EE"
     >
-    
+
     <android.widget.ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
@@ -34,10 +33,9 @@
                     android:id="@+id/randomButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Refresh"
+                    android:text="Shuffle"
                     android:layout_alignParentStart="true"
                     android:layout_marginEnd="16dp"
-                    android:backgroundTint="#4A6FA5"
                     />
 
                 <Button
@@ -46,8 +44,7 @@
                     android:layout_height="wrap_content"
                     android:text="Log Out"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="16dp"
-                    android:backgroundTint="#4A6FA5"/>
+                    android:layout_marginStart="16dp" />
             </RelativeLayout>
 
 
@@ -78,7 +75,7 @@
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
-                android:id="@+id/descriptionTextView"
+                android:id="@+id/synopsisTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

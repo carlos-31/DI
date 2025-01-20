@@ -70,11 +70,11 @@ public class LoginActivity extends AppCompatActivity {
                             Intent dashboardIntent = new Intent(context,DashboardActivity.class);
                             startActivity(dashboardIntent);
                         } else {
-                            Toast.makeText(context, "Error en autenticación.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Authentication error.", Toast.LENGTH_SHORT).show();
                         }
                     });
         else
-            Toast.makeText(context, "Debe escribir sus datos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Missing required information", Toast.LENGTH_SHORT).show();
     }
 
 

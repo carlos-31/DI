@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
-    android:background="#DBE9EE">
+    tools:context=".RegisterActivity">
 
 
     <Button
@@ -17,14 +16,14 @@
         android:layout_margin="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="#4A6FA5"/>
+        />
 
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrarse"
+        android:text="Sign up"
         android:textSize="24sp"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +38,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:minHeight="48dp"
-        android:hint="Nombre completo"
+        android:hint="Full name"
         android:inputType="text"
         android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@id/textView"
@@ -69,7 +68,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:minHeight="48dp"
-        android:hint="Contraseña"
+        android:hint="Password"
         android:inputType="textPassword"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/editTextEmail"
@@ -84,7 +83,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:minHeight="48dp"
-        android:hint="Repita la contraseña"
+        android:hint="Confirm password"
         android:inputType="textPassword"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/editTextPassword"
@@ -99,7 +98,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:minHeight="48dp"
-        android:hint="Número de teléfono"
+        android:hint="Phone number"
         android:inputType="phone"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/editTextPassword2"
@@ -114,7 +113,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:minHeight="48dp"
-        android:hint="Dirección"
+        android:hint="Address"
         android:inputType="text"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/editTextPhone"
@@ -127,7 +126,7 @@
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrarse"
+        android:text="Sign up"
         android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@id/editTextAddress"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +134,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintVertical_bias="0.2"
-        android:backgroundTint="#4A6FA5"
+
         />
 
 

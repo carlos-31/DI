@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.bookcore"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.bookcore"
         minSdk = 27
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -47,5 +47,6 @@ dependencies {
     implementation(libs.firebase.database.ktx)
 
     implementation (libs.picasso)
+
 
 }
