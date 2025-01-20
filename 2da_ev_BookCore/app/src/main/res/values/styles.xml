@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="button" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">#4A6FA5</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">12dp</item>
+        <item name="cornerRadius">24dp</item>
+    </style>
+
+</resources>
