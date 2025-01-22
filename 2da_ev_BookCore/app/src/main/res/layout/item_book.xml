@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="book"
+            type="com.example.bookcore.models.Book" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/bookCover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="The book's cover image" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="start">
+
+            <TextView
+                android:id="@+id/bookName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{book.title}"/>
+
+            <TextView
+                android:id="@+id/bookAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{book.author}"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

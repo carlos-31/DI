@@ -57,7 +57,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         fetchData();
 
-        findViewById(R.id.randomButton).setOnClickListener(v -> fetchData());
+        //findViewById(R.id.randomButton).setOnClickListener(v -> fetchData());
 
 
         Button logoutButton = findViewById(R.id.logoutButton);
