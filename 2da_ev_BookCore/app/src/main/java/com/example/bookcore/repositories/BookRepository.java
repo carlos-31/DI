@@ -31,4 +31,23 @@ public class BookRepository {
             }
         });
     }
+
+    public void getBookById(String bookId, MutableLiveData<Book> detailLiveData) {
+        bookRef.child(bookId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                Book book = snapshot.getValue(Book.class);
+                if (book != null) {
+                    detailLiveData.setValue(book);
+                } else {
+                    detailLiveData.setValue(null);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Handle errors
+            }
+        });
+    }
 }

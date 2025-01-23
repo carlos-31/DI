@@ -15,7 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.firebase.FirebaseApp;
+import com.example.bookcore.views.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            Intent dashboardIntent = new Intent(context,MainActivity.class);
+                            Intent dashboardIntent = new Intent(context, MainActivity.class);
                             startActivity(dashboardIntent);
                         } else {
                             Toast.makeText(context, "Authentication error.", Toast.LENGTH_SHORT).show();

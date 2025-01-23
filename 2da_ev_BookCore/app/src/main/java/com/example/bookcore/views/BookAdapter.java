@@ -2,6 +2,7 @@ package com.example.bookcore.views;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -46,12 +47,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         Book book = books.get(position);
         int width = 200;
         String coverUrl = book.getCover_url();
-        Log.d(TAG, "onBindViewHolder: "+ coverUrl+"\t"+book.getTitle());
+        Log.d(TAG, "onBindViewHolder: "+ book.getTitle());
         Log.d(TAG, "link: " + book.getCover_url());
         Picasso.get()
                 .load(coverUrl)
                 .resize(width, (int) (width * 1.6))
                 .into(holder.binding.bookCover);
+
+//        holder.itemView.setOnClickListener(v -> {
+//            Intent intent = new Intent(v.getContext(), DetailActivity.class);
+//            intent.putExtra("book_id", book.getId());
+//            v.getContext().startActivity(intent);
+//        });
+
         holder.bind(book);
 
     }

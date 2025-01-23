@@ -1,4 +1,4 @@
-package com.example.bookcore;
+package com.example.bookcore.views;
 
 import android.os.Bundle;
 
@@ -8,14 +8,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.example.bookcore.R;
 import com.example.bookcore.databinding.ActivityMainBinding;
 import com.example.bookcore.viewModels.BookViewModel;
-import com.example.bookcore.views.BookAdapter;
 
 import java.util.ArrayList;
 
