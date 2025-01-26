@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.bookcore.views.MainActivity;
+import com.example.bookcore.views.RegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 

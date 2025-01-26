@@ -1,6 +1,5 @@
-package com.example.bookcore;
+package com.example.bookcore.views;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,19 +7,102 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.example.bookcore.LoginActivity;
+import com.example.bookcore.R;
+import com.example.bookcore.viewModels.RegisterViewModel;
 
 
-import java.util.HashMap;
+public class RegisterActivity extends AppCompatActivity {
 
+    private final RegisterViewModel registerViewModel = new RegisterViewModel();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
+
+        EditText name = findViewById(R.id.editTextName);
+        EditText email = findViewById(R.id.editTextEmail);
+        EditText password = findViewById(R.id.editTextPassword);
+        EditText password2 = findViewById(R.id.editTextPassword2);
+        EditText phone = findViewById(R.id.editTextPhone);
+        EditText address = findViewById(R.id.editTextAddress);
+
+        Button registerButton = findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nameText = name.getText().toString();
+                String emailText = email.getText().toString();
+                String passwordText = password.getText().toString();
+                String password2Text = password2.getText().toString();
+                String phoneText = phone.getText().toString();
+                String addressText = address.getText().toString();
+
+                registerViewModel.validateAndRegister(nameText, emailText, passwordText, password2Text, phoneText, addressText);
+            }
+        });
+
+
+        registerViewModel.getValidationMessage().observe(this, message -> {
+            if (message != null && !message.isEmpty()) {
+                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        registerViewModel.getRegistrationStatus().observe(this, isRegistered -> {
+            if (isRegistered != null) {
+                if (isRegistered == 's') {
+                    Toast.makeText(RegisterActivity.this, "User registered successfully!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                } else if (isRegistered == 'f') {
+                    Toast.makeText(RegisterActivity.this, "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 public class RegisterActivity extends AppCompatActivity {
     Context context = this;
     private FirebaseAuth mAuth;
@@ -155,3 +237,4 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 }
+*/
