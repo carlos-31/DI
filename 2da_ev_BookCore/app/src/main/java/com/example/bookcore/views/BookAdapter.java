@@ -54,11 +54,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                 .resize(width, (int) (width * 1.6))
                 .into(holder.binding.bookCover);
 
-//        holder.itemView.setOnClickListener(v -> {
-//            Intent intent = new Intent(v.getContext(), DetailActivity.class);
-//            intent.putExtra("book_id", book.getId());
-//            v.getContext().startActivity(intent);
-//        });
+        holder.itemView.setOnClickListener(v -> {
+            Log.d(TAG, "link: " + book.getTitle() + book.getCover_url());
+            Intent intent = new Intent(v.getContext(), DetailActivity.class);
+            intent.putExtra("url", book.getCover_url());
+            intent.putExtra("title", book.getTitle());
+            intent.putExtra("author", book.getAuthor());
+            intent.putExtra("synopsis", book.getSynopsis());
+            v.getContext().startActivity(intent);
+        });
 
         holder.bind(book);
 
