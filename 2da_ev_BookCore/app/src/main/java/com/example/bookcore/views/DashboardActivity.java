@@ -1,6 +1,9 @@
 package com.example.bookcore.views;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +18,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.bookcore.R;
 import com.example.bookcore.databinding.ActivityDashboardBinding;
 import com.example.bookcore.viewModels.BookViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
 public class DashboardActivity extends AppCompatActivity {
     private BookViewModel bookViewModel;
     private BookAdapter bookAdapter;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +46,14 @@ public class DashboardActivity extends AppCompatActivity {
 
         bookViewModel = new ViewModelProvider(this).get(BookViewModel.class);
         bookViewModel.getBookLiveData().observe(this, books -> bookAdapter.setBooks(books));
+
+        findViewById(R.id.logoutButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bookViewModel.logout();
+                Intent loginIntent = new Intent(DashboardActivity.this, LoginActivity.class);
+                startActivity(loginIntent);
+            }
+        });
     }
 }

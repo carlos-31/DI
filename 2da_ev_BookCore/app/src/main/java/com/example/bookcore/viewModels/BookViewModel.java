@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.bookcore.models.Book;
 import com.example.bookcore.repositories.BookRepository;
+import com.example.bookcore.repositories.UserRepository;
 
 import java.util.List;
 
@@ -25,4 +26,9 @@ public class BookViewModel extends ViewModel {
     private void loadBooks() {
         bookRepository.getBooks(bookLiveData);
     }
+
+    public void logout(){
+        new UserRepository().logoutUser();
+    }
+
 }

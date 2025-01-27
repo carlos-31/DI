@@ -69,6 +69,9 @@ public class UserRepository {
         return loginStatus;
     }
 
+    public void logoutUser(){
+        mAuth.signOut();
+    }
 
 
 }
