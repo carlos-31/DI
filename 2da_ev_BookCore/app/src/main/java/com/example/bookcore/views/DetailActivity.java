@@ -4,45 +4,31 @@ package com.example.bookcore.views;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.bookcore.LoginActivity;
 import com.example.bookcore.R;
 //import com.example.bookcore.databinding.ActivityDetailBinding;
-import com.example.bookcore.models.Book;
-import com.example.bookcore.viewModels.DetailViewModel;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
-import java.util.Random;
 
 //public class DetailActivity extends AppCompatActivity {
 //    private DetailViewModel detailViewModel;
+//    private ActivityDetailBinding binding;
 //
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_detail);
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
+//          setupViewModel();
 //
 //        //ActivityDetailBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 ////
@@ -84,36 +70,9 @@ import java.util.Random;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 public class DetailActivity extends AppCompatActivity {
     private Context context = this;
-    private String coverUrl;
-    private String title;
-    private String author;
-    private String synopsis;
     private ImageView coverImg;
     private TextView titleView;
     private TextView authorView;
@@ -146,12 +105,12 @@ public class DetailActivity extends AppCompatActivity {
                 .into(coverImg);
 
 
-        Button logoutButton = findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(view -> {
-            FirebaseAuth.getInstance().signOut();
-            Toast.makeText(context, "Logged out", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(context, LoginActivity.class));
-        });
+//        Button logoutButton = findViewById(R.id.logoutButton);
+//        logoutButton.setOnClickListener(view -> {
+//            FirebaseAuth.getInstance().signOut();
+//            Toast.makeText(context, "Logged out", Toast.LENGTH_SHORT).show();
+//            startActivity(new Intent(context, LoginActivity.class));
+//        });
     }
 
 }

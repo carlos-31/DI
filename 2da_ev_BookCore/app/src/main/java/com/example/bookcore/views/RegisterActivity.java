@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.bookcore.LoginActivity;
 import com.example.bookcore.R;
 import com.example.bookcore.viewModels.RegisterViewModel;
 
@@ -55,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerViewModel.getRegistrationStatus().observe(this, isRegistered -> {
             if (isRegistered != null) {
                 if (isRegistered == 's') {
-                    Toast.makeText(RegisterActivity.this, "User registered successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "User registered successfully.saf", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 } else if (isRegistered == 'f') {
                     Toast.makeText(RegisterActivity.this, "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();

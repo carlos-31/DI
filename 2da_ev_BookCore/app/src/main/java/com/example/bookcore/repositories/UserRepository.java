@@ -20,6 +20,7 @@ public class UserRepository {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseRef;
     private MutableLiveData<Boolean> registrationStatus = new MutableLiveData<>();
+    private MutableLiveData<Boolean> loginStatus = new MutableLiveData<>();
 
     public UserRepository() {
         mAuth = FirebaseAuth.getInstance();
@@ -53,6 +54,21 @@ public class UserRepository {
                 });
         return registrationStatus;
     }
+
+    public LiveData<Boolean> loginUser(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "logged in");
+                        loginStatus.setValue(true);
+                    } else {
+                        Log.e(TAG, "error login: " + task.getException());
+                        loginStatus.setValue(false);
+                    }
+                });
+        return loginStatus;
+    }
+
 
 
 }
