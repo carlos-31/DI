@@ -55,4 +55,8 @@ public class Book {
     public String getTitle() {
         return title;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

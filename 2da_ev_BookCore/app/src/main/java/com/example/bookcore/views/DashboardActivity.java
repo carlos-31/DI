@@ -25,7 +25,6 @@ import java.util.ArrayList;
 public class DashboardActivity extends AppCompatActivity {
     private BookViewModel bookViewModel;
     private BookAdapter bookAdapter;
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
