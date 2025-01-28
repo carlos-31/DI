@@ -1,24 +1,75 @@
-package com.example.bookcore;
+package com.example.bookcore.views;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.bookcore.R;
+import com.example.bookcore.viewModels.LoginViewModel;
 
 
+public class LoginActivity extends AppCompatActivity {
+    private LoginViewModel loginViewModel;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        loginViewModel = new LoginViewModel();
+
+        Button loginButton = findViewById(R.id.buttonLogIn);
+        loginButton.setOnClickListener(v -> {
+            String email = ((EditText) findViewById(R.id.editTextEmail)).getText().toString();
+            String password = ((EditText) findViewById(R.id.editTextPassword)).getText().toString();
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "Please enter both email and password", Toast.LENGTH_SHORT).show();
+            } else {
+                loginViewModel.login(email, password);
+            }
+        });
+
+
+
+        TextView myTextView = findViewById(R.id.textViewRegister);
+        myTextView.setOnClickListener(v -> {
+            Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(registerIntent);
+        });
+
+        loginViewModel.getWasSuccess().observe(this, isSuccess -> {
+            if (isSuccess) {
+                Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
+                startActivity(dashboardIntent);
+                finish(); // Finalizamos la actividad de login para que el usuario no pueda volver atrás
+            }
+            else
+                Toast.makeText(this, "Error while loging in", Toast.LENGTH_SHORT).show();
+        });
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 public class LoginActivity extends AppCompatActivity {
     Context context = this;
     private FirebaseAuth mAuth;
@@ -67,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
-                            Intent dashboardIntent = new Intent(context,DashboardActivity.class);
+                            Intent dashboardIntent = new Intent(context, DashboardActivity.class);
                             startActivity(dashboardIntent);
                         } else {
                             Toast.makeText(context, "Authentication error.", Toast.LENGTH_SHORT).show();
@@ -80,3 +131,5 @@ public class LoginActivity extends AppCompatActivity {
 
 
 }
+
+ */
