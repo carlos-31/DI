@@ -26,6 +26,15 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/backButton"
+                    android:text="back"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="10dp"
+                    />
+
                 <ImageView
                     android:id="@+id/coverImageView"
                     android:layout_width="wrap_content"
@@ -39,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@{viewModel.detailLiveData.title}"
-                    android:textSize="16sp"
+                    android:textSize="25sp"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
@@ -48,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@{viewModel.detailLiveData.author}"
-                    android:textSize="16sp"
+                    android:textSize="23sp"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
@@ -57,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@{viewModel.detailLiveData.synopsis}"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:layout_gravity="center_horizontal" />
 
             </LinearLayout>

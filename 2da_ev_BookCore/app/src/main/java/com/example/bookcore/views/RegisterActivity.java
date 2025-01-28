@@ -44,6 +44,14 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(loginIntent);
+            }
+        });
+
 
         registerViewModel.getValidationMessage().observe(this, message -> {
             if (message != null && !message.isEmpty()) {
@@ -54,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerViewModel.getRegistrationStatus().observe(this, isRegistered -> {
             if (isRegistered != null) {
                 if (isRegistered == 's') {
-                    Toast.makeText(RegisterActivity.this, "User registered successfully.saf", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "User registered successfully.", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 } else if (isRegistered == 'f') {
                     Toast.makeText(RegisterActivity.this, "Registration failed. Please try again.", Toast.LENGTH_SHORT).show();

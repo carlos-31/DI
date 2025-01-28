@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,6 +46,14 @@ public class DetailActivity extends AppCompatActivity {
         detailViewModel = new ViewModelProvider(this).get(DetailViewModel.class);
         binding.setViewModel(detailViewModel);
         binding.setLifecycleOwner(this);
+
+        findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dashboardIntent = new Intent(DetailActivity.this, DashboardActivity.class);
+                startActivity(dashboardIntent);
+            }
+        });
 
 
         String bookId = getIntent().getStringExtra("bookId");
