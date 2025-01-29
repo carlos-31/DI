@@ -40,6 +40,7 @@ public class BookRepository {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Book book = snapshot.getValue(Book.class);
                 if (book != null) {
+                    book.setId(bookId);
                     detailLiveData.setValue(book);
                 } else {
                     detailLiveData.setValue(null);

@@ -47,22 +47,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         Book book = books.get(position);
         int width = 200;
         String coverUrl = book.getCover_url();
-        Log.d(TAG, "onBindViewHolder: "+ book.getTitle());
-        Log.d(TAG, "link: " + book.getCover_url());
         Picasso.get()
                 .load(coverUrl)
                 .resize(width, (int) (width * 1.6))
                 .into(holder.binding.bookCover);
 
         holder.itemView.setOnClickListener(v -> {
-            Log.d(TAG, "link: " + book.getTitle() + book.getCover_url());
             Intent intent = new Intent(v.getContext(), DetailActivity.class);
-            Log.d(TAG, " ~~~~~~~~~~~~~~id: " + position);
             intent.putExtra("bookId", book.getId());
-            intent.putExtra("url", book.getCover_url());
-            intent.putExtra("title", book.getTitle());
-            intent.putExtra("author", book.getAuthor());
-            intent.putExtra("synopsis", book.getSynopsis());
             v.getContext().startActivity(intent);
         });
 

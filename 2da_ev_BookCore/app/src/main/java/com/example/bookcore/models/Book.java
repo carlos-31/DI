@@ -7,16 +7,16 @@ public class Book {
     private String genre;
     private String cover_url;
     private String synopsis;
-    private int pageCount;
+    private int page_count;
     private int publication;
 
     public Book() {}
 
 
-    public Book(String id, int publication, int pageCount, String synopsis, String cover_url, String genre, String author, String title) {
+    public Book(String id, int publication, int page_count, String synopsis, String cover_url, String genre, String author, String title) {
         this.id = id;
         this.publication = publication;
-        this.pageCount = pageCount;
+        this.page_count = page_count;
         this.synopsis = synopsis;
         this.cover_url = cover_url;
         this.genre = genre;
@@ -32,8 +32,8 @@ public class Book {
         return publication;
     }
 
-    public int getPageCount() {
-        return pageCount;
+    public int getPage_count() {
+        return page_count;
     }
 
     public String getSynopsis() {
