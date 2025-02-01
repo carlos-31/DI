@@ -38,9 +38,6 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
-//        binding = ActivityDetailBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
@@ -50,10 +47,15 @@ public class DetailActivity extends AppCompatActivity {
 
         String bookId = getIntent().getStringExtra("bookId");
 
-//        UserRepository user = new UserRepository();
-//        if (user.checkFav(bookId)){
-//            Toast.makeText(DetailActivity.this, "esta en favs", Toast.LENGTH_SHORT).show();
-//        } else Toast.makeText(DetailActivity.this, "no esta en favs", Toast.LENGTH_SHORT).show();
+        detailViewModel.getFavStatus().observe(this, isFavorite -> {
+            if (isFavorite != null && isFavorite) {
+                binding.favButton.setImageResource(R.drawable.ic_favorite);
+                //Toast.makeText(DetailActivity.this, "Added to Favorites", Toast.LENGTH_SHORT).show();
+            } else {
+                binding.favButton.setImageResource(R.drawable.ic_favorite_border);
+                //Toast.makeText(DetailActivity.this, "Removed from Favorites", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +68,12 @@ public class DetailActivity extends AppCompatActivity {
 
         findViewById(R.id.favButton).setOnClickListener(v -> {
             detailViewModel.addFavourite(bookId);
-            Toast.makeText(DetailActivity.this, "Added to Favorites! id: " + bookId, Toast.LENGTH_SHORT).show();
+
+            if (!Boolean.TRUE.equals(detailViewModel.getFavStatus().getValue())) {
+                Toast.makeText(DetailActivity.this, "Added to Favorites", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(DetailActivity.this, "Removed from Favorites", Toast.LENGTH_SHORT).show();
+            }
         });
 
         if (bookId != null) {
@@ -80,8 +87,11 @@ public class DetailActivity extends AppCompatActivity {
                     Log.d(TAG,"AAAAAAAAAAAAAAAAAA detail book id: " + book.getId());
                     int width = 670;
                     Picasso.get().load(book.getCover_url()).resize(width, (int) (width * 1.6)).into(coverImg);
+
+                    detailViewModel.checkFav();
                 }
             });
+
         }
 
     }

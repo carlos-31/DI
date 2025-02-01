@@ -56,7 +56,7 @@ public class FavouritesActivity extends AppCompatActivity {
     private void loadBooks(){
         bookViewModel.loadFavs();
         bookViewModel.getFavBooksLiveData().observe(this, books -> {
-            if (books != null) {
+            if (!books.isEmpty()) {
                 binding.noFavoritesTextView.setVisibility(View.GONE);
                 bookAdapter.setBooks(books);
             } else {

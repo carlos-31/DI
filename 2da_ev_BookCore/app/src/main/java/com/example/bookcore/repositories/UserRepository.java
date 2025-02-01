@@ -89,7 +89,7 @@ public class UserRepository {
         mAuth.signOut();
     }
 
-    public void addFavourite(String id) {
+    public void addFavourite(String id, MutableLiveData<Boolean> favStatus) {
         //userFavoritesRef.child(id).setValue(true);
         userFavoritesRef.child(id).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -97,13 +97,16 @@ public class UserRepository {
                     Boolean isFavorite = task.getResult().getValue(Boolean.class);
                     if (isFavorite != null && isFavorite) {
                         userFavoritesRef.child(id).setValue(false);
+                        favStatus.setValue(false);
                         Log.d(TAG, "removed book id: " + id + " from favs");
                     } else {
                         userFavoritesRef.child(id).setValue(true);
+                        favStatus.setValue(true);
                         Log.d(TAG, "added book id: " + id + " from favs");
                     }
                 } else {
                     userFavoritesRef.child(id).setValue(true);
+                    favStatus.setValue(true);
                     Log.d(TAG, "added book id: " + id + " from favs");
                 }
             } else {
@@ -112,9 +115,17 @@ public class UserRepository {
         });
     }
 
-    public boolean checkFav(String id){
-        return Boolean.TRUE.equals(userFavoritesRef.child(id).get().getResult().getValue(Boolean.class));
+    public void checkFav(String id, MutableLiveData<Boolean> favStatus) {
+        userFavoritesRef.child(id).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Boolean isFavorite = task.getResult().getValue(Boolean.class);
+                favStatus.setValue(isFavorite != null && isFavorite);
+            } else {
+                favStatus.setValue(false);
+            }
+        });
     }
+
 
     public void getFavorites(MutableLiveData<List<Integer>> favs) {
         userFavoritesRef.addListenerForSingleValueEvent(new ValueEventListener() {
