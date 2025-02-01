@@ -13,9 +13,13 @@ import com.example.bookcore.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,7 +29,7 @@ public class UserRepository {
     private DatabaseReference userFavoritesRef;
     private MutableLiveData<Boolean> registrationStatus = new MutableLiveData<>();
     private MutableLiveData<Boolean> loginStatus = new MutableLiveData<>();
-    private MutableLiveData<List<Book>> favBooks = new MutableLiveData<>();
+//    private MutableLiveData<List<Integer>> favs = new MutableLiveData<>();
 
     public UserRepository() {
         mAuth = FirebaseAuth.getInstance();
@@ -110,6 +114,34 @@ public class UserRepository {
 
     public boolean checkFav(String id){
         return Boolean.TRUE.equals(userFavoritesRef.child(id).get().getResult().getValue(Boolean.class));
+    }
+
+    public void getFavorites(MutableLiveData<List<Integer>> favs) {
+        userFavoritesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<Integer> trueFavorites = new ArrayList<>();
+
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                    Integer index = Integer.valueOf(childSnapshot.getKey());
+                    Boolean isFavorite = childSnapshot.getValue(Boolean.class);
+                    Log.d(TAG, "Index: " + index + ", Favorite value: " + isFavorite);
+
+                    if (isFavorite != null && isFavorite) {
+                        trueFavorites.add(index);
+                        Log.d(TAG, "Index: " + index + " added");
+                    }
+                }
+
+                favs.setValue(trueFavorites);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAG, "error getting favorites: " + databaseError.getMessage());
+                favs.setValue(new ArrayList<>());
+            }
+        });
     }
 
 

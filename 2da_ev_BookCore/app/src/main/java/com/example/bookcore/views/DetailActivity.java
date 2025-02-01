@@ -58,8 +58,9 @@ public class DetailActivity extends AppCompatActivity {
         findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent dashboardIntent = new Intent(DetailActivity.this, DashboardActivity.class);
-                startActivity(dashboardIntent);
+                onBackPressed();
+//                Intent dashboardIntent = new Intent(DetailActivity.this, DashboardActivity.class);
+//                startActivity(dashboardIntent);
             }
         });
 
@@ -67,7 +68,6 @@ public class DetailActivity extends AppCompatActivity {
             detailViewModel.addFavourite(bookId);
             Toast.makeText(DetailActivity.this, "Added to Favorites! id: " + bookId, Toast.LENGTH_SHORT).show();
         });
-
 
         if (bookId != null) {
             detailViewModel.loadBook(bookId);

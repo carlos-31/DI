@@ -54,5 +54,13 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
+
+        findViewById(R.id.favsButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loginIntent = new Intent(DashboardActivity.this, FavouritesActivity.class);
+                startActivity(loginIntent);
+            }
+        });
     }
 }

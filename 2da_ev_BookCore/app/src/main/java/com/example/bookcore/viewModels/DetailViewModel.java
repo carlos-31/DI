@@ -8,6 +8,8 @@ import com.example.bookcore.models.Book;
 import com.example.bookcore.repositories.BookRepository;
 import com.example.bookcore.repositories.UserRepository;
 
+import java.util.List;
+
 public class DetailViewModel extends ViewModel {
     private final MutableLiveData<Book> detailLiveData = new MutableLiveData<>();
     private final BookRepository bookRepository;
@@ -29,4 +31,6 @@ public class DetailViewModel extends ViewModel {
     public void addFavourite(String id){
         userRepository.addFavourite(id);
     }
+
+
 }
