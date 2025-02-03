@@ -25,6 +25,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.bookcore.R;
 import com.example.bookcore.databinding.ActivityDetailBinding;
 import com.example.bookcore.models.Book;
+import com.example.bookcore.repositories.UserRepository;
 import com.example.bookcore.viewModels.DetailViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
@@ -37,29 +38,45 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
-//        binding = ActivityDetailBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-        Log.d(TAG,"AAAAAAAAAAAAAAAAAA detail");
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail);
 
         detailViewModel = new ViewModelProvider(this).get(DetailViewModel.class);
         binding.setViewModel(detailViewModel);
         binding.setLifecycleOwner(this);
 
-        findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent dashboardIntent = new Intent(DetailActivity.this, DashboardActivity.class);
-                startActivity(dashboardIntent);
+        String bookId = getIntent().getStringExtra("bookId");
+
+        detailViewModel.getFavStatus().observe(this, isFavorite -> {
+            if (isFavorite != null && isFavorite) {
+                binding.favButton.setImageResource(R.drawable.ic_favorite);
+                //Toast.makeText(DetailActivity.this, "Added to Favorites", Toast.LENGTH_SHORT).show();
+            } else {
+                binding.favButton.setImageResource(R.drawable.ic_favorite_border);
+                //Toast.makeText(DetailActivity.this, "Removed from Favorites", Toast.LENGTH_SHORT).show();
             }
         });
 
+        findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+//                Intent dashboardIntent = new Intent(DetailActivity.this, DashboardActivity.class);
+//                startActivity(dashboardIntent);
+            }
+        });
 
-        String bookId = getIntent().getStringExtra("bookId");
-        Log.d(TAG,"AAAAAAAAAAAAAAAAAA detail 2");
+        findViewById(R.id.favButton).setOnClickListener(v -> {
+            detailViewModel.addFavourite(bookId);
+
+            if (!Boolean.TRUE.equals(detailViewModel.getFavStatus().getValue())) {
+                Toast.makeText(DetailActivity.this, "Added to Favorites", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(DetailActivity.this, "Removed from Favorites", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         if (bookId != null) {
-            Log.d(TAG,"AAAAAAAAAAAAAAAAAA detail");
             detailViewModel.loadBook(bookId);
 
             ImageView coverImg = findViewById(R.id.coverImageView);
@@ -67,30 +84,32 @@ public class DetailActivity extends AppCompatActivity {
             detailViewModel.getDetailLiveData().observe(this, new Observer<Book>() {
                 @Override
                 public void onChanged(Book book) {
+                    Log.d(TAG,"AAAAAAAAAAAAAAAAAA detail book id: " + book.getId());
                     int width = 670;
                     Picasso.get().load(book.getCover_url()).resize(width, (int) (width * 1.6)).into(coverImg);
+
+                    detailViewModel.checkFav();
                 }
             });
-        } else {
-            Log.d(TAG,"AAAAAAAAAAAAAAAAAA detail else de if null");
+
         }
 
     }
 }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //public class DetailActivity extends AppCompatActivity {
 //    private Context context = this;

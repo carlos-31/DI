@@ -2,11 +2,15 @@ package com.example.bookcore.views;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import static android.content.ContentValues.TAG;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -54,5 +58,35 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
+
+        findViewById(R.id.favsButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loginIntent = new Intent(DashboardActivity.this, FavouritesActivity.class);
+                startActivity(loginIntent);
+            }
+        });
+
+        SharedPreferences sharedPref = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
+
+
+        findViewById(R.id.themeButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG,"yay");
+                boolean isDarkMode = sharedPref.getBoolean("darkMode", false);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean("darkMode", !isDarkMode);
+                editor.apply();
+                boolean darkMode = sharedPref.getBoolean("darkMode", false);
+                if (darkMode) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                recreate();
+            }
+        });
+
     }
 }
