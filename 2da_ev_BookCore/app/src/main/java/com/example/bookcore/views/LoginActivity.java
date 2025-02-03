@@ -1,6 +1,8 @@
 package com.example.bookcore.views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.bookcore.R;
 import com.example.bookcore.viewModels.LoginViewModel;
@@ -47,11 +50,22 @@ public class LoginActivity extends AppCompatActivity {
             if (isSuccess) {
                 Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
                 startActivity(dashboardIntent);
-                finish(); // Finalizamos la actividad de login para que el usuario no pueda volver atrás
+                finish();
             }
             else
                 Toast.makeText(this, "Error while loging in", Toast.LENGTH_SHORT).show();
         });
+
+        SharedPreferences sharedPref = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
+        boolean darkMode = sharedPref.getBoolean("darkMode", false);
+        if (darkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            //recreate(); // recrea la activity para que se aplique el tema sin reiniciar.
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            //recreate(); // recrea la activity para que se aplique el tema sin reiniciar.
+        }
+
     }
 }
 

@@ -4,44 +4,60 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/booksTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Books:"
-                android:textSize="30sp"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="20dp"/>
 
             <Button
                 android:id="@+id/logoutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:text="Log out"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginEnd="16dp"
+                android:contentDescription="logging out button"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/themeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:contentDescription="switch light/dark mode"
+                android:src="@drawable/theme_icon"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="16dp" />
 
             <Button
                 android:id="@+id/favsButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:text="favs"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"/>
+                android:layout_marginStart="16dp"
+                android:contentDescription="Favourite books"/>
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/booksTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Books:"
+            android:textSize="30sp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_horizontal"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
