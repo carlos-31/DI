@@ -60,4 +60,26 @@
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
     </style>
     <style name="Theme.BookCore" parent="Base.Theme.BookCore" />
+
+    <!-- Define the missing AppBarOverlay and PopupOverlay styles -->
+    <style name="Theme.BookCore.AppBarOverlay">
+        <!-- Customize this AppBarOverlay style to your needs -->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="android:textColorPrimary">@color/md_theme_inverseOnSurface</item>
+        <item name="android:colorControlNormal">@color/md_theme_inverseOnSurface</item>
+    </style>
+
+    <style name="Theme.BookCore.PopupOverlay">
+        <!-- Customize this PopupOverlay style to your needs -->
+        <item name="android:popupMenuStyle">@style/Widget.MaterialComponents.PopupMenu</item>
+        <item name="android:colorControlNormal">@color/md_theme_inverseOnSurface</item>
+        <!-- Removed the problematic 'android:dropdownListPreferredItemHeight' line -->
+    </style>
+
+
+
+
 </resources>

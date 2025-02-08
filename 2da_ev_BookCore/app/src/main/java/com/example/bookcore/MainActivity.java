@@ -35,6 +35,7 @@ private ActivityMainBinding binding;
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

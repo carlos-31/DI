@@ -8,4 +8,19 @@
         <item name="cornerRadius">24dp</item>
     </style>
 
+    <style name="Theme.NavigationDrawer" parent="Base.Theme.BookCore">
+        <!-- Drawer Background Color -->
+        <item name="android:background">@color/md_theme_surface</item>
+
+        <!-- Drawer Item Text Color -->
+        <item name="android:textColor">@color/md_theme_onSurface</item>
+
+        <!-- Drawer Selected Item Background Color
+        <item name="android:selectableItemBackground">@drawable/drawer_item_background</item>
+-->
+        <!-- Customize the icon color -->
+        <item name="android:textColorSecondary">@color/md_theme_onSecondary</item>
+    </style>
+
+
 </resources>
