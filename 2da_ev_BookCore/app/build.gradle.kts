@@ -61,4 +61,9 @@ dependencies {
     implementation (libs.recyclerview)
 
 
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+
+
+
 }
