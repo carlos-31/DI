@@ -72,6 +72,7 @@ public class UserRepository {
     }
 
     public LiveData<Boolean> loginUser(String email, String password) {
+        Log.d(TAG,"logging in");
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {

@@ -1,9 +1,12 @@
 package com.example.bookcore.views;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -48,7 +51,8 @@ public class LoginActivity extends AppCompatActivity {
 
         loginViewModel.getWasSuccess().observe(this, isSuccess -> {
             if (isSuccess) {
-                Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
+                Log.d(TAG,"aaaaaaaa");
+                Intent dashboardIntent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(dashboardIntent);
                 finish();
             }
