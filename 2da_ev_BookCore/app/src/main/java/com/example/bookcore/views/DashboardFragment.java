@@ -65,32 +65,22 @@
 
 package com.example.bookcore.views;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.bookcore.R;
-import com.example.bookcore.databinding.ActivityDashboardBinding;
 import com.example.bookcore.databinding.FragmentDashboardBinding;
 import com.example.bookcore.viewModels.BookViewModel;
-import com.example.bookcore.views.BookAdapter;
+import com.example.bookcore.viewModels.DashboardViewModel;
 
 import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
 
 public class DashboardFragment extends Fragment {
     private BookViewModel bookViewModel;

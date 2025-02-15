@@ -1,4 +1,4 @@
-package com.example.bookcore.views;
+package com.example.bookcore.views.old.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +22,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.bookcore.R;
 import com.example.bookcore.databinding.ActivityDashboardBinding;
 import com.example.bookcore.viewModels.BookViewModel;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.bookcore.views.BookAdapter;
+import com.example.bookcore.views.LoginActivity;
 
 import java.util.ArrayList;
 

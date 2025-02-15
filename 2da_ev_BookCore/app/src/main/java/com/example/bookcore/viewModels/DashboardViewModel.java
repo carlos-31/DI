@@ -1,4 +1,4 @@
-package com.example.bookcore.views;
+package com.example.bookcore.viewModels;
 
 import androidx.lifecycle.ViewModel;
 

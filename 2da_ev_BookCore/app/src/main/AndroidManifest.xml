@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.FavouritesActivity"
+            android:name=".views.old.activities.FavouritesActivity"
             android:exported="false" />
         <activity
             android:name=".views.DetailActivity"
@@ -40,7 +40,7 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".views.DashboardActivity"
+            android:name=".views.old.activities.DashboardActivity"
             android:exported="true" />
     </application>
 
