@@ -15,7 +15,7 @@
             android:title="Favourites"
             android:textColor="?attr/colorOnSurface"/>
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_profile"
             android:icon="@drawable/ic_person"
             android:title="Profile"
             android:textColor="?attr/colorOnSurface"/>

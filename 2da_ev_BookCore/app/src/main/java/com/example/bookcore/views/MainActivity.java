@@ -38,26 +38,48 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .setAnchorView(R.id.fab).show();
-            }
-        });
+
         DrawerLayout drawer = binding.drawerLayout;
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
+        // Passing each menu ID as a set of Ids because each menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_dashboard, R.id.nav_favourites, R.id.nav_slideshow)
+                R.id.nav_dashboard, R.id.nav_favourites, R.id.nav_profile) // Add all your top-level destinations here
                 .setOpenableLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        navigationView.setNavigationItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.nav_logout) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                return true; // Return true to indicate we've handled the click
+            } else if (item.getItemId() == R.id.nav_dashboard) {
+                // Handle navigation to Dashboard (or other fragments as needed)
+                navController.navigate(R.id.nav_dashboard);
+                drawer.closeDrawer(GravityCompat.START); // Close the drawer
+                return true;
+            } else if (item.getItemId() == R.id.nav_favourites) {
+                // Handle navigation to Favourites (or other fragments as needed)
+                navController.navigate(R.id.nav_favourites);
+                drawer.closeDrawer(GravityCompat.START); // Close the drawer
+                return true;
+            } else if (item.getItemId() == R.id.nav_profile) {
+                navController.navigate(R.id.nav_profile);
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            }
+
+
+            return false;
+        });
 
 
     }
@@ -76,10 +98,4 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void logoutUser() {
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
 }
