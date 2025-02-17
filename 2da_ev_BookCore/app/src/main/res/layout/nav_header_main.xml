@@ -34,7 +34,7 @@
             android:paddingBottom="4dp"
             android:text="BookCore"
             android:textColor="?attr/colorOnSurfaceInverse"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/textView"
@@ -43,7 +43,7 @@
             android:layout_gravity="start"
             android:text="All about books!"
             android:textColor="?attr/colorOnSurfaceInverse"
-            android:textSize="25sp" />
+            android:textSize="23sp" />
 
     </LinearLayout>
 </LinearLayout>
