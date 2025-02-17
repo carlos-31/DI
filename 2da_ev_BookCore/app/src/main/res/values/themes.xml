@@ -58,6 +58,23 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+        <item name="android:statusBarColor">@color/barColour</item>
+
     </style>
     <style name="Theme.BookCore" parent="Base.Theme.BookCore" />
+
+    <style name="Theme.BookCore.AppBarOverlay">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="android:textColorPrimary">@color/md_theme_inverseOnSurface</item>
+        <item name="android:colorControlNormal">@color/md_theme_inverseOnSurface</item>
+    </style>
+
+    <style name="Theme.BookCore.PopupOverlay">
+        <item name="android:popupMenuStyle">@style/Widget.MaterialComponents.PopupMenu</item>
+        <item name="android:colorControlNormal">@color/md_theme_inverseOnSurface</item>
+    </style>
+
 </resources>

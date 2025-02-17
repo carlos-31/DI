@@ -8,6 +8,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="barColour">#407A29</color>
 
     <color name="md_theme_primary">#436833</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>

@@ -41,6 +41,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+    implementation(libs.legacy.support.v4)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -56,6 +59,11 @@ dependencies {
     implementation (libs.lifecycle.livedata.ktx)
     implementation (libs.lifecycle.viewmodel.ktx)
     implementation (libs.recyclerview)
+
+
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+
 
 
 }

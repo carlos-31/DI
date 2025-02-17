@@ -11,6 +11,9 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.bookcore.R;
 import com.example.bookcore.databinding.ItemBookBinding;
+
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookcore.models.Book;
@@ -53,10 +56,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                 .into(holder.binding.bookCover);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), DetailActivity.class);
-            intent.putExtra("bookId", book.getId());
-            v.getContext().startActivity(intent);
+            NavController navController = Navigation.findNavController(v);
+            DetailFragment fragment = DetailFragment.newInstance(book.getId());
+            navController.navigate(R.id.action_navigation_to_detail, fragment.getArguments());
         });
+
+//        holder.itemView.setOnClickListener(v -> {
+//            Intent intent = new Intent(v.getContext(), DetailActivity.class);
+//            intent.putExtra("bookId", book.getId());
+//            v.getContext().startActivity(intent);
+//        });
 
         holder.bind(book);
 
